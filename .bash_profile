@@ -40,6 +40,11 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# load function files from bash_completion.d
+if [ -d /etc/bash_completion.d ]; then
+    . /etc/bash_completion.d/*
+fi
+
 #|------------------------------------------------------------------------------
 #|	Git completion 
 #|------------------------------------------------------------------------------
@@ -49,6 +54,11 @@ fi
 #
 if [ -f ~/.git-completion.bash ]; then
    . ~/.git-completion.bash
+fi
+
+# git bash prompt
+if [ -f ~/.git-prompt.sh ]; then
+   . ~/.git-prompt.sh
 fi
 
 #|------------------------------------------------------------------------------
@@ -66,7 +76,10 @@ fi
 #|------------------------------------------------------------------------------
 
 # Shell prompt
-export PS1='\[\e[0;31m\]\u@\h:\[\e[m\]\[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$ \[\e[m\]'
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_SHOWUPSTREAM="auto verbose git"
+export PS1='\[\e[0;31m\]\u@\h:\[\e[m\]\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\]\[\e[0;33m\]$(__git_ps1 " (%s)")\[\e[m\]\[\e[0;37m\]\n➔ \[\e[m\]'
 
 
 #|------------------------------------------------------------------------------
@@ -85,7 +98,7 @@ export GREP_OPTIONS='--color=auto'
 #|------------------------------------------------------------------------------
 
 # uncomment below to set Sublime Text 2 as the default editor
-# export EDITOR="/usr/local/bin/sb -w"
+# export EDITOR="/usr/local/bin/subl -w"
 
 #|------------------------------------------------------------------------------
 #|	bashfinder - control the finder with the terminal
