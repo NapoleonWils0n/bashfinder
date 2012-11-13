@@ -79,7 +79,7 @@ fi
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM="auto verbose git"
-export PS1='\n\[\e[0;31m\]\u@\h:\[\e[m\]\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\]\[\e[0;33m\]$(__git_ps1 " (%s)")\[\e[m\]\[\e[0;37m\]\n➔ \[\e[m\]'
+export PS1='\[\e[0;31m\]\u@\h:\[\e[m\]\[\e[1;34m\]\w\[\e[m\]\[\e[1;32m\]\[\e[m\]\[\e[0;33m\]$(__git_ps1 " (%s)")\[\e[m\]\[\e[0;37m\]\n➔ \[\e[m\]'
 
 
 #|------------------------------------------------------------------------------
