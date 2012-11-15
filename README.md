@@ -17,9 +17,16 @@ Works with the Mac OSX Terminal and iTerm2
 ## Install
 
 
-1 - Download the git repo to your home directory
+1 - Download the git repo to your desktop, and then move the contents to your home directory
 
-<pre>git clone git://github.com/NapoleonWils0n/bashfinder.git .</pre>
+<pre>git clone git://github.com/NapoleonWils0n/bashfinder.git ~/Desktop/bashfinder</pre>
+
+<pre>
+mv .bash_aliases ~/.bash_aliases
+mv .bash_profile ~/.bash_profile
+mv .inputrc ~/.inputrc
+mv .git ~/.git
+</pre>
 
 2 - Download and install Bash completion (Required)     
 Download: [bash-completion](http://bash-completion.alioth.debian.org/ "bash-completion")
