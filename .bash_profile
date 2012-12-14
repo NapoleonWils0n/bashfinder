@@ -94,98 +94,10 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 export GREP_OPTIONS='--color=auto'
 
 #|------------------------------------------------------------------------------
-#| Default editor
+#|	Check OSTYPE is Mac osx, and only then include code to control the Finder
 #|------------------------------------------------------------------------------
 
-# uncomment below to set Sublime Text 2 as the default editor
-# export EDITOR="/usr/local/bin/subl -w"
-
-#|------------------------------------------------------------------------------
-#|	bashfinder - control the finder with the terminal
-#|------------------------------------------------------------------------------
-
-function ee { 
- osascript -e 'set cwd to do shell script "pwd"'\
- -e 'tell application "Finder"'\
- -e "if (${1-1} <= (count Finder windows)) then"\
- -e "set the target of window ${1-1} to (POSIX file cwd) as string"\
- -e 'else' -e "open (POSIX file cwd) as string"\
- -e 'end if' -e 'end tell';\
-};\
-
-# Check if a directory is passed to cd, eg: $ cd Desktop
-# if no directory is specified typing cd changes dir to ~
-
-function cdee() { if [ -z "$1" ]
-then
-cd ~; ee > /dev/null;
-else
-cd "$1"; ee > /dev/null;
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+	    . ~/.bash_macosx
+	    . /etc/bash_completion.d/*
 fi
-};
-alias cd='cdee'
-
-#|------------------------------------------------------------------------------
-#|	List view
-#|------------------------------------------------------------------------------
-
-# typing list at the prompt will change the current Finder window to list view
-
-function list { 
- osascript -e 'set cwd to do shell script "pwd"'\
- -e 'tell application "Finder"'\
- -e "if (${1-1} <= (count Finder windows)) then"\
- -e "set the target of window ${1-1} to (POSIX file cwd) as string"\
- -e "set the current view of the front Finder window to list view"\
- -e 'else' -e "open (POSIX file cwd) as string"\
- -e "set the current view of the front Finder window to list view"\
- -e 'end if' -e 'end tell';\
-};\
-
-#|------------------------------------------------------------------------------
-#|	Icon view
-#|------------------------------------------------------------------------------
-
-# typing icon at the prompt will change the current Finder window to icon view
-
-function icon { 
- osascript -e 'set cwd to do shell script "pwd"'\
- -e 'tell application "Finder"'\
- -e "if (${1-1} <= (count Finder windows)) then"\
- -e "set the target of window ${1-1} to (POSIX file cwd) as string"\
- -e "set the current view of the front Finder window to icon view"\
- -e 'else' -e "open (POSIX file cwd) as string"\
- -e "set the current view of the front Finder window to icon view"\
- -e 'end if' -e 'end tell';\
-};\
-
-#|------------------------------------------------------------------------------
-#|	Column view
-#|------------------------------------------------------------------------------
-
-# typing column at the prompt will change the current Finder window to column view
-
-function column { 
- osascript -e 'set cwd to do shell script "pwd"'\
- -e 'tell application "Finder"'\
- -e "if (${1-1} <= (count Finder windows)) then"\
- -e "set the target of window ${1-1} to (POSIX file cwd) as string"\
- -e "set the current view of the front Finder window to column view"\
- -e 'else' -e "open (POSIX file cwd) as string"\
- -e "set the current view of the front Finder window to column view"\
- -e 'end if' -e 'end tell';\
-};\
-
-#|------------------------------------------------------------------------------
-#|	Change terminal directory to current directory open in the Finder
-#|------------------------------------------------------------------------------
-
-# cdff will change the terminal directory to current directory open in the Finder
-
-function ff { osascript -e 'tell application "Finder"'\
- -e "if (${1-1} <= (count Finder windows)) then"\
- -e "get POSIX path of (target of window ${1-1} as alias)"\
- -e 'else' -e 'get POSIX path of (desktop as alias)'\
- -e 'end if' -e 'end tell'; };\
-
-function cdff { cd "`ff $@`"; };
