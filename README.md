@@ -23,6 +23,7 @@ Works with the Mac OSX Terminal and iTerm2
 
 <pre>
 mv .bash_aliases ~/.bash_aliases
+mv .bash_macosx ~/.bash_macosx
 mv .bash_profile ~/.bash_profile
 mv .inputrc ~/.inputrc
 mv .git ~/.git
