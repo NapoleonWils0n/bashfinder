@@ -29,6 +29,8 @@ mv .inputrc ~/.inputrc
 mv .git ~/.git
 </pre>
 
+If you already have a bash profile you can add the code from the project into your existing bash profile.
+
 2 - Download and install Bash completion (Required)     
 Download: [bash-completion](http://bash-completion.alioth.debian.org/ "bash-completion")
 
